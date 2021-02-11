@@ -1,3 +1,7 @@
 /.idea/*
 /.idea
 *.iml
+/target
+/target/*
+src/main/java/ex
+src/main/java/ex/*
