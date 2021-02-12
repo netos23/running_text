@@ -1,0 +1,12 @@
+.container {
+    -fx-fill-width: true;
+    -fx-alignment: center;
+    -fx-border-radius: 30;
+    /*-fx-background-color: rgb(0, 0, 0);*/
+}
+
+.label {
+    -fx-font-weight: bold;
+    /*-fx-text-fill: white;*/
+    /*-fx-background-color: black;*/
+}

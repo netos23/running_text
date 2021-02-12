@@ -1,4 +1,4 @@
-package ru.fbtw.running_text.core;
+package ru.fbtw.running_text.core.recognition;
 
 import com.google.cloud.speech.v1p1beta1.SpeechRecognitionAlternative;
 

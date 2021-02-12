@@ -1,4 +1,4 @@
-package ru.fbtw.running_text.core;
+package ru.fbtw.running_text.core.recognition;
 
 import com.google.api.gax.rpc.ResponseObserver;
 import com.google.api.gax.rpc.StreamController;
@@ -46,7 +46,8 @@ public class CustomResponseObserver
 
 		SpeechRecognitionAlternative alternative = result.getAlternativesList().get(0);
 		lastResultFinished = result.getIsFinal();
-		if (result.getIsFinal()) {
+		event.handle(alternative, lastResultFinished);
+		/*if (result.getIsFinal()) {
 			System.out.printf(
 					"%s [confidence: %.2f]\n",
 					alternative.getTranscript(),
@@ -54,7 +55,7 @@ public class CustomResponseObserver
 		} else {
 			System.out.printf(
 					" %s", alternative.getTranscript());
-		}
+		}*/
 		/*if (result.getIsFinal()) {
 			// если результат финальный
 

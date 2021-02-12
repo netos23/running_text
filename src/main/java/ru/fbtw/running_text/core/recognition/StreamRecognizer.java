@@ -1,4 +1,4 @@
-package ru.fbtw.running_text.core;
+package ru.fbtw.running_text.core.recognition;
 
 import com.google.api.gax.rpc.ClientStream;
 import com.google.api.gax.rpc.StreamController;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import static ru.fbtw.running_text.core.CustomResponseObserver.STREAMING_LIMIT;
+import static ru.fbtw.running_text.core.recognition.CustomResponseObserver.STREAMING_LIMIT;
 
 public class StreamRecognizer {
 	private static volatile BlockingQueue<byte[]> sharedQueue = new LinkedBlockingQueue();
@@ -30,7 +30,7 @@ public class StreamRecognizer {
 	private static int finalRequestEndTime;
 
 
-	public static void infiniteStreamingRecognize(String languageCode) throws Exception {
+	public static void infiniteStreamingRecognize(String languageCode, RecognizeEvent event) throws Exception {
 		// Задание формата аудио
 		AudioFormat audioFormat =
 				new AudioFormat(16000, 16, 1, true, false);
@@ -54,9 +54,7 @@ public class StreamRecognizer {
 		try (SpeechClient client = SpeechClient.create()) {
 			// Обозреватель ответа
 			CustomResponseObserver responseObserver =
-					new CustomResponseObserver(controller -> streamController = controller,
-							(alternative, isFinal) -> {
-							});
+					new CustomResponseObserver(controller -> streamController = controller, event);
 
 			// Стрим отправки запросов
 			ClientStream<StreamingRecognizeRequest> clientStream =

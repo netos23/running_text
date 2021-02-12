@@ -1,4 +1,4 @@
-package ru.fbtw.running_text.core;
+package ru.fbtw.running_text.core.recognition;
 
 import javax.sound.sampled.TargetDataLine;
 import java.util.concurrent.BlockingQueue;
